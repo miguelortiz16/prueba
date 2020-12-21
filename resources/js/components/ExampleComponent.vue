@@ -15,6 +15,7 @@
               class="btn btn-secondary float-right ml-1 boton"
 
               @click="abrirModal2(0)"
+
             >
               <i class="icon-plus"></i>&nbsp;Buscar por estado
             </button>
