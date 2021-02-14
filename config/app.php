@@ -107,7 +107,7 @@ return [
     */
 
     'faker_locale' => 'en_US',
-
+    'key' => env('APP_KEY', 'SomeRandomStringSomeRandomString'),
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
