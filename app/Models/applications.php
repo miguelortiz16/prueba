@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pet extends Model
+class Applications extends Model
 {
-    protected $fillable = ['category','name','photoUrls','tags','status'];
+
+    protected $fillable = ['id','typeJob','employee','day','startDate','endDate','observation','status'];
     public $timestamps = false;
 }

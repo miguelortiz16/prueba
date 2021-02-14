@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "sweetalert2": "^10.12.5",
+        "vue-router": "^3.5.1",
         "vue-select": "^3.11.2",
         "vue-window-modal": "git+https://github.com/ropbla9/vue-window-modal.git"
     }

@@ -17,19 +17,34 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-//pet router
-Route::post('/pet/findByStatus','App\Http\Controllers\PetsController@index');
 
-Route::post('/pet','App\Http\Controllers\PetsController@store');
-Route::put('/petss','App\Http\Controllers\PetsController@update');
+Route::get('/users','App\Http\Controllers\UsersController@index');
 
-Route::post('/deletepet','App\Http\Controllers\PetsController@delete');
+Route::post('/users','App\Http\Controllers\UsersController@store');
+Route::put('/users','App\Http\Controllers\UsersController@update');
+
+Route::post('/users','App\Http\Controllers\UsersController@delete');
 
 
 
-//category router
-Route::get('/category','App\Http\Controllers\PetsController@lisCategory');
-Route::get('/Tags','App\Http\Controllers\PetsController@listTags');
-Auth::routes();
+
+Route::get('/telecommuting','App\Http\Controllers\TelecommutingController@index');
+
+Route::post('/telecommuting','App\Http\Controllers\TelecommutingController@store');
+Route::put('/telecommuting','App\Http\Controllers\TelecommutingController@update');
+
+Route::post('/telecommuting','App\Http\Controllers\TelecommutingController@delete');
+
+
+
+
+Route::get('/applications','App\Http\Controllers\ApplicationsController@index');
+
+Route::post('/applications','App\Http\Controllers\ApplicationsController@store');
+Route::post('/applications/update','App\Http\Controllers\ApplicationsController@update');
+
+Route::post('/applications/dalete','App\Http\Controllers\ApplicationsController@delete');
+Route::post('/applications/disapprove','App\Http\Controllers\ApplicationsController@disapprove');
+Route::post('/applications/approve','App\Http\Controllers\ApplicationsController@Approve');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

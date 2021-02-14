@@ -6,10 +6,12 @@
 import vSelect from "vue-select";
 import  VueWindowModal  from  'vue-window-modal'
 require('./bootstrap');
+import VueRouter from 'vue-router'
+
 
 window.Vue = require('vue');
 
-
+Vue.use(VueRouter)
 Vue.use(VueWindowModal);
 Vue.component("v-select", vSelect);
 /**
@@ -31,6 +33,24 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Approval from './components/Approval';
+import Registrer from './components/Registrer'
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'ingresar',
+            component: Registrer
+        },
+        {
+            path: '/approval',
+            name: 'approval',
+            component: Approval,
+        },
+    ],
+});
 const app = new Vue({
     el: '#app',
+    router,
 });

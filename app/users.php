@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tags extends Model
+class users extends Model
 {
-    protected $fillable = ['name','id'];
-    public $timestamps = false;
+
+    protected $fillable = ['name','lastName','typoDocument','dateBirth','id'];
 }
