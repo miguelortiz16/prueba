@@ -455,7 +455,7 @@ export default {
           Swal.fire({
             position: "center",
             type: "success",
-            title: "Usuario  actualizada con exito!",
+            title: "Usuario   actualizada con exito!",
             showConfirmButton: false,
             timer: 1500,
           });
