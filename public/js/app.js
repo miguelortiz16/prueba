@@ -2309,7 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
           position: "center",
           type: "success",
-          title: "Mascota agregada con exito!",
+          title: "Usuario agregada con exito!",
           showConfirmButton: false,
           timer: 1500
         });
@@ -2337,7 +2337,7 @@ __webpack_require__.r(__webpack_exports__);
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
           position: "center",
           type: "success",
-          title: "Mascota actualizada con exito!",
+          title: "Usuario actualizada con exito!",
           showConfirmButton: false,
           timer: 1500
         });
@@ -3129,7 +3129,7 @@ __webpack_require__.r(__webpack_exports__);
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
           position: "center",
           type: "success",
-          title: "Mascota agregada con exito!",
+          title: "Usuario agregada con exito!",
           showConfirmButton: false,
           timer: 1500
         });
@@ -3157,7 +3157,7 @@ __webpack_require__.r(__webpack_exports__);
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
           position: "center",
           type: "success",
-          title: "Mascota actualizada con exito!",
+          title: "Usuario actualizada con exito!",
           showConfirmButton: false,
           timer: 1500
         });
@@ -3175,7 +3175,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
-        title: "¿Esta seguro de eliminar esta mascota?",
+        title: "¿Esta seguro de eliminar esta Usuario?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

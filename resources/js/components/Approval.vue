@@ -422,7 +422,7 @@ export default {
           Swal.fire({
             position: "center",
             type: "success",
-            title: "Mascota agregada con exito!",
+            title: "Usuario agregada con exito!",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -455,7 +455,7 @@ export default {
           Swal.fire({
             position: "center",
             type: "success",
-            title: "Mascota actualizada con exito!",
+            title: "Usuario actualizada con exito!",
             showConfirmButton: false,
             timer: 1500,
           });
