@@ -476,7 +476,7 @@ export default {
     },
     deleteapplications(id) {
       Swal.fire({
-        title: "¿Esta seguro de eliminar esta Usuario?",
+        title: "¿Esta seguro de eliminar este Usuario?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
