@@ -47,7 +47,6 @@ const router = new VueRouter({
             name: 'ingresar',
             component: Owner
         },
-        
         {
             path: '/approval',
             name: 'approval',
