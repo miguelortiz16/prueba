@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.21.1",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
         "jquery": "^3.2",
@@ -27,6 +27,7 @@
         "sweetalert2": "^10.12.5",
         "vue-router": "^3.5.1",
         "vue-select": "^3.11.2",
-        "vue-window-modal": "git+https://github.com/ropbla9/vue-window-modal.git"
+        "vue-window-modal": "git+https://github.com/ropbla9/vue-window-modal.git",
+        "vuelidate": "^0.7.6"
     }
 }

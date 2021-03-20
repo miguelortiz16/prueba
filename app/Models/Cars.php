@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Model
+
+class Cars extends Model
 {
 
-    protected $fillable = ['name','lastName','typoDocument','dateBirth','id'];
+    protected $fillable = ['id','plate','brand','kind',"nameOwner","idOwner"];
     public $timestamps = false;
 }

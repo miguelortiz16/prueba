@@ -2,16 +2,58 @@
   <main class="main">
     <!-- Breadcrumb-->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">Aprobación Teletrabajo</li>
+      <li class="breadcrumb-item">Autos</li>
     </ol>
     <div class="container-fluid">
       <div class="animated fadeIn">
         <!-- Ejemplo de tabla Listado -->
         <div class="card">
           <div class="card-header">
-            <i class="fa fa-align-justify"></i>Aprobación Teletrabajo
+            <i class="fa fa-align-justify"></i> Autos
 
+            <button
+              type="button"
+              class="btn btn-secondary float-right ml-1 boton"
 
+              @click="abrirModal2(0)"
+
+            >
+              <i class="icon-plus"></i>&nbsp;Buscar por placa
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary float-right ml-1 boton"
+
+              @click="abrirModal3(0)"
+            >
+              <i class="icon-plus"></i>&nbsp;Buscar por cedula
+            </button>
+
+              <button
+              type="button"
+              class="btn btn-secondary float-right ml-1 boton"
+
+              @click="abrirModal4(0)"
+            >
+              <i class="icon-plus"></i>&nbsp;Buscar por Nombre propietario
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary float-right ml-1 boton"
+
+              @click="abrirModal(0)"
+            >
+              <i class="icon-plus"></i>&nbsp;Nuevo
+            </button>
+
+             <button
+              type="button"
+              class="btn btn-secondary float-right ml-1 boton"
+
+              @click="abrirModal5(0)"
+            >
+              <i class="icon-plus"></i>&nbsp;Listar Marca
+            </button>
 
 
           </div>
@@ -22,57 +64,43 @@
               <thead>
                 <tr>
 
-                  <th>Tipo de trabajo </th>
-                  <th>Nombre De Empleado</th>
-                  <th>Fecha inicio </th>
-                  <th>Fecha final</th>
-                  <th>Dias</th>
-                  <th>Justificacion  </th>
-                    <th>Estado </th>
-                      <th>Aprobacion </th>
+                  <th>PLACA </th>
+                  <th>MARCA </th>
+                  <th>TIPO DE VEHICULO</th>
+                    <th>PROPIETARIO</th>
+                   
+                      <th>Accion </th>
+                      
                 </tr>
               </thead>
               <tbody>
 
 
-                <tr v-for="applications in arrayApplications" :key="applications.id">
+                <tr v-for="Cars in arrayCars" :key="Cars.id">
 
-                  <td v-text="applications.typeJob"></td>
-                  <td v-text="applications.employee"></td>
-                   <td v-text="applications.startDate" ></td>
-                 <td v-text="applications.endDate" ></td>
-                    <td v-text="applications.day" ></td>
-                       <td v-text="applications.observation" ></td>
-                  <td>
-                    <div v-if="applications.status ==1">
+                  <td v-text="Cars.plate"></td>
+                 
+                  <td v-text="Cars.brand"></td>
+                   <td v-text="Cars.kind" ></td>
+                     <td v-text="Cars.nameOwner" ></td>
+               
+                 
+                  
 
-
-                      <span class="badge badge-success">Abrobado</span>
-                    </div>
-                    <div v-if="applications.status ==0">
-                      <span class="badge badge-danger">Pendiente</span>
-                    </div>
-
-
-                  </td>
 
                    <td>
-
-                    <template v-if="applications.status==1">
+                    <button
+                      type="button"
+                      class="btn btn-warning btn-sm"
+                      @click="abrirModal(1, Cars)"
+                    >
+                      <i class="icon-pencil"></i>
+                    </button> &nbsp;
+                    <template>
                       <button
                         type="button"
                         class="btn btn-danger btn-sm"
-                        @click="disapproveApplications(applications.id)"
-                      >
-                        <i class="icon-trash"></i>
-                      </button>
-                    </template>
-
-                     <template v-else>
-                      <button
-                        type="button"
-                        class="btn btn-success"
-                        @click="approveApplications(applications.id)"
+                        @click="deleteCars(Cars.id)"
                       >
                         <i class="icon-trash"></i>
                       </button>
@@ -130,81 +158,55 @@
           <div class="row">
             <div class="col">
               <form action method="post" enctype="multipart/form-data" class="form-horizontal">
-                <div class="form-group row">
-                  <label class="col-md-3 form-control-label">Tipo De Teletrabajo</label>
-                  <div class="col-md-9">
-                   <v-select
+                
+                
 
-                      :options="telecoArray"
-                      label="name"
-                      v-model="typeJob"
-                      :reduce="telecommuting_id => telecommuting_id.name"
-                    ></v-select>
+          
+
+
+    <div class="form-group row">
+                  <label class="col-md-3 form-control-label">Placa</label>
+                  <div class="col-md-9">
+
+             <input type="text" v-model="plate" class="form-control" placeholder="Nombre" />
+                <div class="text-info" v-if="!$v.plate.required">Este campo es requerido</div>
                   </div>
                 </div>
 
 
 
+    <div class="form-group row">
+                  <label class="col-md-3 form-control-label">Marca</label>
+                  <div class="col-md-9">
 
+             <input type="text" v-model="brand" class="form-control" placeholder="Marca" />
+               <div class="text-info" v-if="!$v.brand.required">Este campo es requerido</div>
+                  </div>
+                </div>
 
-                 <div class="form-group row">
+   <div class="form-group row">
+                  <label class="col-md-3 form-control-label">Tipo de vehiculo</label>
+                  <div class="col-md-9">
+
+             <input type="text" v-model="kind" class="form-control" placeholder="Tipo de vehiculo" />
+                   <div class="text-info" v-if="!$v.kind.required">Este campo es requerido</div>
+                  </div>
+                </div>
+
+<div class="form-group row">
                   <label class="col-md-3 form-control-label"> usuario</label>
                   <div class="col-md-9">
                     <v-select
 
                       :options="usersArray"
                       label="name"
-                      v-model="employee"
-                      :reduce="users_id => users_id.name"
+                      v-model="users_id"
+                      :reduce="users_id => users_id.id"
                     ></v-select>
+                      <div class="text-info" v-if="!$v.users_id.required">Este campo es requerido</div>
 
                   </div>
                 </div>
-
-
-
-
-                 <div class="form-group row">
-                  <label class="col-md-3 form-control-label">dias</label>
-                  <div class="col-md-9">
-              <v-select
-              :options="rankDay"
-               v-model="day"
-             ></v-select>
-                  </div>
-                </div>
-
-
-
-  <div class="form-group row">
-                  <label class="col-md-3 form-control-label">Dia de Inicio</label>
-                  <div class="col-md-9">
-
-             <input type="date" v-model="startDate" class="form-control"  :min="dateNow" />
-                  </div>
-                </div>
-
-     <div class="form-group row">
-                  <label class="col-md-3 form-control-label">Dia de Finalizacion</label>
-                  <div class="col-md-9">
-
-             <input type="date" v-model="endDate" class="form-control"  :min="dateNow" />
-                  </div>
-                </div>
-
-    <div class="form-group row">
-                  <label class="col-md-3 form-control-label">Justificacion o Observacion</label>
-                  <div class="col-md-9">
-
-             <input type="text" v-model="observation" class="form-control" placeholder="Observacion" />
-                  </div>
-                </div>
-
-
-
-
-
-
 
 
               </form>
@@ -224,14 +226,185 @@
                 v-if="accion===1"
                 class="btn "
                   style="background:#d3753e; color:white; border:1px solid #d3753e;"
-                @click="updateApplication"
+                @click="updateCars"
               >Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </vue-window-modal>
+<vue-window-modal
+        :active="mostrarMR2"
+        width="400px"
+        height="300px"
+        :title="tituloVentana"
+        v-on:clickClose="mostrarMR2=false"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form action method="post" enctype="multipart/form-data" class="form-horizontal">
+
+
+
+
+
+
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label">Buscar Por La Placa</label>
+                  <div class="col-md-9">
+                    <input type="text" v-model="plateCars" class="form-control" placeholder="Placa" />
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-right">
+              <button
+                type="button"
+                v-if="accion2===0"
+                class="btn "
+                  style="background:#d3753e; color:white; border:1px solid #d3753e;"
+                @click="listOptions"
+              >Buscar</button>
+
+            </div>
+          </div>
+        </div>
+      </vue-window-modal>
+
+        <vue-window-modal
+        :active="mostrarMR3"
+          width="400px"
+        height="300px"
+        :title="tituloVentana"
+        v-on:clickClose="mostrarMR3=false"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form action method="post" enctype="multipart/form-data" class="form-horizontal">
+               <div class="form-group row">
+                  <label class="col-md-3 form-control-label">ID Del Propietario</label>
+                  <div class="col-md-9">
+                    <input type="text" v-model="idOwner" class="form-control" placeholder="id" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-right">
+              <button
+                type="button"
+                v-if="accion3===0"
+                class="btn "
+                  style="background:#d3753e; color:white; border:1px solid #d3753e;"
+                @click="listOptions"
+              >Buscar</button>
+
             </div>
           </div>
         </div>
       </vue-window-modal>
 
 
+        <vue-window-modal
+        :active="mostrarMR4"
+         width="400px"
+        height="300px"
+        :title="tituloVentana"
+        v-on:clickClose="mostrarMR4=false"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form action method="post" enctype="multipart/form-data" class="form-horizontal">
+               <div class="form-group row">
+                  <label class="col-md-3 form-control-label">Nombre </label>
+                  <div class="col-md-9">
+                    <input type="text" v-model="NameOwner" class="form-control" placeholder="Nombre" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-right">
+              <button
+                type="button"
+                v-if="accion3===0"
+                class="btn "
+                  style="background:#d3753e; color:white; border:1px solid #d3753e;"
+                @click="listOptions"
+              >Buscar</button>
+
+            </div>
+          </div>
+        </div>
+      </vue-window-modal>
+   <vue-window-modal
+        :active="mostrarMR5"
+         width="auto"
+        height="auto"
+        :title="tituloVentana"
+        v-on:clickClose="mostrarMR5=false"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form action method="post" enctype="multipart/form-data" class="form-horizontal">
+             
+            
+
+
+                       <div class="card-body">
+
+            <table class="table table-bordered table-striped table-sm">
+
+              <thead>
+                <tr>
+
+                  <th>CANTIDAD </th>
+                  <th>MARCA </th>
+                
+                 
+                   
+                     
+                      
+                </tr>
+              </thead>
+              <tbody>
+
+
+                <tr v-for="brand in arrayBrand" :key="brand.id">
+
+                  <td v-text="brand.count"></td>
+                 
+                  <td v-text="brand.brand"></td>
+                   
+                  
+               
+                 
+                  
+
+
+                
+
+             
+                </tr>
+              </tbody>
+            </table>
+           
+          </div>
+
+              </form>
+            </div>
+          </div>
+         
+        </div>
+      </vue-window-modal>
 
 
 
@@ -241,18 +414,39 @@
 
 <script>
 import Swal from "sweetalert2";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 import "vue-select/dist/vue-select.css";
 export default {
+   validations: {
+    plate: {
+      required,
+    },
+    brand: {
+      required,
+    },
+    kind: {
+      required,
+    },
+    users_id: {
+      required,
+    },
+   },
   data() {
     return {
      rankDay:[1,2,3,4,5],
      dateNow : new Date().toISOString().slice(0,10),
-        applicationstatus:"",
+        Carstatus:"",
       mostrarMR: false,
-
+      mostrarMR2:false,
+      mostrarMR3:false,
+      mostrarMR4:false,
+       mostrarMR5:false,
       accion: 0,
+      accion2:0,
+      accion3:0,
+      accion4:0,
       tituloVentana: "",
-      arrayApplications: [],
+      arrayCars: [],
       id: 0,
 
      status: "",
@@ -265,22 +459,24 @@ export default {
         to: 0,
       },
       offset: 3,
-      filtro: "name",
+      filtro: "plate",
       buscar: "",
       telecoArray: [],
       teleco_id: "",
-      users_id:"",
+      users_id:null,
       users:"",
        usersArray: [],
        telecommuting:"",
        telecommuting_id:"",
-       day:"",
-         name:"",
-         typeJob:"",
-        employee:"",
-        startDate:"",
-        endDate:"",
-        observation:"",
+         plate:"",
+         CarsId:"",
+        brand:"",
+        kind:"",
+        plateCars:"",
+        idOwner:null,
+       NameOwner:"",
+       arrayBrand:[]
+       
 
 
     };
@@ -317,25 +513,24 @@ export default {
     abrirModal(accion, data = []) {
       switch (accion) {
         case 0: {
-          this.tituloVentana = "Nueva Persona ";
-        this.day="",
-        this.typeJob="",
-        this.employee="",
-        this.startDate="",
-       this.endDate="",
-        this.observation="",
+          this.tituloVentana = "Nuevo Autos ";
+        this.CarsId="",
+        this.brand="",
+        this.kind="",
+        this.users_id=null,
+         this.plate="";
           this.mostrarMR = true;
           this.accion = 0;
           break;
         }
         case 1: {
           this.tituloVentana = "Actualizar ";
-        this.day=data["day"];
-        this.typeJob=data["typeJob"];
-        this.employee=data["employee"];
-        this.startDate=data["startDate"];
-       this.endDate=data["endDate"];
-        this.observation=data["observation"];
+    
+        this.CarsId=data["CarsId"];
+        this.brand=data["brand"];
+        this.kind=data["kind"];
+     this.users_id=null,
+        this.plate=data["plate"];
           this.id = data["id"];
           this.mostrarMR = true;
           this.accion = 1;
@@ -343,20 +538,74 @@ export default {
         }
       }
     },
+    abrirModal2(accion2) {
+      switch (accion2) {
+        case 0: {
+          this.tituloVentana = "Buscar por Placa";
+          this.plateCars = "";
+           this.idOwner = "";
+            this.NameOwner = "";
+            this.mostrarMR2= true;
+             this.accion2 = 0;
+          break;
+        }
+      }
+    },
+     abrirModal3(accion3) {
+      switch (accion3) {
+        case 0: {
+          this.tituloVentana = "Buscar por Cedula";
+         this.plateCars = "";
+           this.idOwner = "";
+            this.NameOwner = "";
+            this.mostrarMR3= true;
+            this.petStatus="";
+             this.accion3 = 0;
+          break;
+        }
+      }
+    },
+      abrirModal4(accion3) {
+      switch (accion3) {
+        case 0: {
+          this.tituloVentana = "Buscar por Nombre Del Usuario";
+          this.plateCars = "";
+           this.idOwner = "";
+            this.NameOwner = "";
+            this.mostrarMR4= true;
+            this.petStatus="";
+             this.accion4 = 0;
+          break;
+        }
+      }
+    },
+  abrirModal5(accion3) {
+      switch (accion3) {
+        case 0: {
+          this.tituloVentana = "Listado Por Marca";
+          this.plateCars = "";
+           this.idOwner = "";
+            this.NameOwner = "";
+            this.mostrarMR5= true;
+            this.petStatus="";
+             this.accion4 = 0;
+          break;
+        }
+      }
+    },
 
 
-
-    listApplications() {
+    listCars() {
       let me = this;
-      let url ="/applications";
+      let url ="/Cars";
       axios
         .get(url, {
 
         })
         .then(function (response) {
 
-          me.arrayApplications = response.data;
-          console.log( me.arrayApplications)
+          me.arrayCars = response.data;
+          console.log( me.arrayCars)
 
           console.log( response.data)
         })
@@ -366,26 +615,62 @@ export default {
           this.mostrarMR2=false;
       this.mostrarMR3=false;
     },
-    listTelecommuting() {
+       listOptions() {
       let me = this;
-      let url = "/telecommuting";
-
+      me.arrayCars=[];
+      let url ="/listOption";
       axios
-        .get(url)
-        .then((res) => {
-          me.telecoArray = res.data;
-
+        .post(url, {
+         
+          plateCars: this.plateCars,
+          idOwner: this.idOwner,
+            NameOwner:this.NameOwner,
+        })
+        .then(function (response) {
+        Swal.fire({
+            position: "center",
+            type: "success",
+            title: "Busqueda realizada  con exito!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          me.arrayCars = response.data;
+          console.log( me.usersArray)
+          console.log( response.data)
         })
         .catch(function (error) {
           console.log(error);
         });
-         this.mostrarMR2= false;
+          this.mostrarMR2=false;
+      this.mostrarMR3=false;
+       this.mostrarMR4=false;
     },
-
-    listUsers() {
+  
+   listBrand() {
       let me = this;
-      let url = "/users";
-
+      me.arrayCars=[];
+      let url ="/listBrand";
+      axios
+        .get(url, {
+         
+        
+        })
+        .then(function (response) {
+       
+          me.arrayBrand = response.data;
+       
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+          this.mostrarMR2=false;
+      this.mostrarMR3=false;
+       this.mostrarMR4=false;
+    },
+  
+ listOwners() {
+      let me = this;
+      let url = "/Owners";
       axios
         .get(url)
         .then((res) => {
@@ -397,24 +682,31 @@ export default {
         });
          this.mostrarMR2= false;
     },
+   
     cambiarPagina(page, buscar, filtro) {
       let me = this;
       //Actualiza la página actual
       me.pagination.current_page = page;
       //Envia la petición para visualizar la data de esa página
-      me.listarapplicationss(page, buscar, filtro);
+      me.listarCars(page, buscar, filtro);
     },
     registerApplication() {
       let me = this;
-      axios
-        .post("/applications", {
 
-         day:this.day,
-         typeJob:this.typeJob,
-        employee:this.employee,
-        startDate:this.startDate,
-        endDate:this.endDate,
-        observation:this.observation,
+     //   this.submitted = true;
+      this.$v.$touch();
+     
+      if (this.$v.$invalid) {
+        return false;
+      }
+      axios
+        .post("/Cars", {
+
+        users_id:this.users_id,
+         id:this.id,
+        brand:this.brand,
+        kind:this.kind,
+        plate:this.plate,
 
 
         })
@@ -427,7 +719,8 @@ export default {
             timer: 1500,
           });
           me.mostrarMR = false;
-       me.listApplications();
+       me.listCars();
+       me.listBrand();
         })
         .catch(function (error) {
           Swal.fire({
@@ -437,30 +730,29 @@ export default {
           });
         });
     },
-    updateApplication() {
+    updateCars() {
       let me = this;
       axios
-        .post("/applications/update", {
+        .post("/Cars/update", {
 
 
           id: this.id,
-         day:this.day,
-         typeJob:this.typeJob,
-        employee:this.employee,
-        startDate:this.startDate,
-        endDate:this.endDate,
-        observation:this.observation,
+      users_id:this.users_id,
+       
+        brand:this.brand,
+        kind:this.kind,
+        plate:this.plate,
         })
         .then(function (response) {
           Swal.fire({
             position: "center",
             type: "success",
-            title: "Usuario   actualizada con exito!",
+            title: "Usuario actualizada con exito!",
             showConfirmButton: false,
             timer: 1500,
           });
           me.mostrarMR = false;
-          me.listApplications();
+         me.listCars();
         })
         .catch(function (error) {
           Swal.fire({
@@ -470,94 +762,53 @@ export default {
           });
         });
     },
+    deleteCars(id) {
+      Swal.fire({
+        title: "¿Esta seguro de eliminar este Usuario?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar!",
+        cancelButtonText: "Cancelar",
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.value) {
+          let me = this;
+          axios
+            .post("/Cars/dalete", {
+              id: id,
+            })
+            .then(function (response) {
+              me.listCars();
+              Swal.fire({
+                title: "Eliminado!",
+                text: "El registro ha sido eliminado con éxito.",
+                type: "success",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+        }
+      });
+    },
 
-    approveApplications(id) {
-      Swal.fire({
-        title: "¿Esta seguro de Aprobar  este usuario?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
-        cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn btn-success",
-        cancelButtonClass: "btn btn-danger",
-        buttonsStyling: false,
-        reverseButtons: true,
-      }).then((result) => {
-        if (result.value) {
-          let me = this;
-          axios
-            .post("/applications/approve", {
-              id: id,
-            })
-            .then(function (response) {
-              me.listApplications();
-              Swal.fire({
-                title: "Aprobado!",
-                text: "El registro ha sido aprobado con éxito.",
-                type: "success",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        } else if (
-          // Read more about handling dismissals
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-        }
-      });
-    },
-        disapproveApplications(id) {
-      Swal.fire({
-        title: "¿Esta seguro de desaprobar  este Usuario?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar!",
-        cancelButtonText: "Cancelar",
-        confirmButtonClass: "btn btn-success",
-        cancelButtonClass: "btn btn-danger",
-        buttonsStyling: false,
-        reverseButtons: true,
-      }).then((result) => {
-        if (result.value) {
-          let me = this;
-          axios
-            .post("/applications/disapprove", {
-              id: id,
-            })
-            .then(function (response) {
-              me.listApplications();
-              Swal.fire({
-                title: "Desaprobado!",
-                text: "El registro ha sido desaprobado  con éxito.",
-                type: "success",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        } else if (
-          // Read more about handling dismissals
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-        }
-      });
-    },
   },
   mounted() {
-    this.listApplications();
- this.listTelecommuting();
-      this.listUsers();
+  this.listCars();
 
-
+this.listOwners();
+this.listBrand();
   },
 };
 </script>

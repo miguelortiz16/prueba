@@ -32,9 +32,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+ import Vue from 'vue'
+ import Vuelidate from 'vuelidate'
 
 import Approval from './components/Approval';
 import Registrer from './components/Registrer'
+Vue.use(Vuelidate)
+Vue.component('vuelidate', Vuelidate);
 const router = new VueRouter({
     mode: 'history',
     routes: [

@@ -18,33 +18,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users','App\Http\Controllers\UsersController@index');
 
-Route::post('/users','App\Http\Controllers\UsersController@store');
-Route::put('/users','App\Http\Controllers\UsersController@update');
+Route::get('/Owners','App\Http\Controllers\OwnersController@index');
 
-Route::post('/users','App\Http\Controllers\UsersController@delete');
+Route::post('/Owners','App\Http\Controllers\OwnersController@store');
+Route::post('/Owners/update','App\Http\Controllers\OwnersController@update');
 
-
-
-
-Route::get('/telecommuting','App\Http\Controllers\TelecommutingController@index');
-
-Route::post('/telecommuting','App\Http\Controllers\TelecommutingController@store');
-Route::put('/telecommuting','App\Http\Controllers\TelecommutingController@update');
-
-Route::post('/telecommuting','App\Http\Controllers\TelecommutingController@delete');
+Route::post('/Owners/dalete','App\Http\Controllers\OwnersController@delete');
+Route::post('/Owners/disapprove','App\Http\Controllers\OwnersController@disapprove');
+Route::post('/Owners/approve','App\Http\Controllers\OwnersController@Approve');
 
 
 
+Route::get('/Cars','App\Http\Controllers\CarsController@index');
+Route::post('/listOption','App\Http\Controllers\CarsController@listOption');
+Route::get('/listBrand','App\Http\Controllers\CarsController@listBrand');
+Route::post('/Cars','App\Http\Controllers\CarsController@store');
+Route::post('/Cars/update','App\Http\Controllers\CarsController@update');
 
-Route::get('/applications','App\Http\Controllers\ApplicationsController@index');
-
-Route::post('/applications','App\Http\Controllers\ApplicationsController@store');
-Route::post('/applications/update','App\Http\Controllers\ApplicationsController@update');
-
-Route::post('/applications/dalete','App\Http\Controllers\ApplicationsController@delete');
-Route::post('/applications/disapprove','App\Http\Controllers\ApplicationsController@disapprove');
-Route::post('/applications/approve','App\Http\Controllers\ApplicationsController@Approve');
+Route::post('/Cars/dalete','App\Http\Controllers\CarsController@delete');
+Route::post('/Cars/disapprove','App\Http\Controllers\CarsController@disapprove');
+Route::post('/Cars/approve','App\Http\Controllers\CarsController@Approve');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
