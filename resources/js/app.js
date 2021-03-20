@@ -35,8 +35,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  import Vue from 'vue'
  import Vuelidate from 'vuelidate'
 
-import Approval from './components/Approval';
-import Registrer from './components/Registrer'
+import Cars from './components/Cars';
+import Owner from './components/Owner'
 Vue.use(Vuelidate)
 Vue.component('vuelidate', Vuelidate);
 const router = new VueRouter({
@@ -45,12 +45,12 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'ingresar',
-            component: Registrer
+            component: Owner
         },
         {
             path: '/approval',
             name: 'approval',
-            component: Approval,
+            component: Cars,
         },
     ],
 });
